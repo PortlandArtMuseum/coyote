@@ -22,26 +22,6 @@ Image annotation site and API to enable the distributed annotation of museum ima
 
 We could include build status here.
 
-## Via Vagrant
-
-Install [vagrant](https://www.vagrantup.com/downloads.html) and run ```vagrant up```.  Then, you can view the site like so:
-
-```bash
-
-    ssh -N -L 3000:localhost:3000 vagrant@localhost -p 2222 #vagrant is the password
-    open http://localhost:3000
-```
-
-## Components
-
-- [RubyOnRails](http://rubyonrails.org/)
-- [accecess](http://lukyvj.github.io/accecss/)
-- [MariaDB](https://mariadb.org/) 
-- [rbenv](http://rbenv.org/) with [plugins](https://github.com/sstephenson/rbenv/wiki/Plugins) for gems, bundler, build, and binstubs
-- [bundler](http://bundler.io/).
-- [SASS](http://sass-lang.com/)
-- [Coffeescript](http://coffeescript.org/)
-
 ## Setup
 
 ```bash
@@ -56,7 +36,54 @@ Install [vagrant](https://www.vagrantup.com/downloads.html) and run ```vagrant u
 
 Secure creds are kept untracked in `.env`
 
-##Data model
+### Vagrant
+
+If you wish to use Vagrant for development, install [vagrant](https://www.vagrantup.com/downloads.html) and run `vagrant up`  Then, you can view the site like so:
+
+```bash
+
+    ssh -N -L 3000:localhost:3000 vagrant@localhost -p 2222 #vagrant is the password
+    open http://localhost:3000
+```
+
+## Server Install
+
+Spin up a server with a recent Ubuntu server OS.
+
+Install the chef related gems, then the cookbooks.
+
+```bash
+cd chef
+bundle install
+librarian-chef install
+```
+
+Edit the `.env` to accound for your particulars.
+
+Generate an SSL if you need to and add to your data bag.
+
+Build the server and execute the recipes
+
+```bash
+knife solo prepare root@myserver.com
+knife solo prepare root@myserver.com
+```
+
+
+
+
+
+## Components
+
+- [RubyOnRails](http://rubyonrails.org/)
+- [accecess](http://lukyvj.github.io/accecss/)
+- [MariaDB](https://mariadb.org/) 
+- [rbenv](http://rbenv.org/) with [plugins](https://github.com/sstephenson/rbenv/wiki/Plugins) for gems, bundler, build, and binstubs
+- [bundler](http://bundler.io/).
+- [SASS](http://sass-lang.com/)
+- [Coffeescript](http://coffeescript.org/)
+
+## Data model
 
 For use on [nomnoml](http://www.nomnoml.com/)
 
